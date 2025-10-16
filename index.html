@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COMMENSA — Rallumer les sens</title>
+  <meta name="description" content="Rituels sensoriels pour restaurants — COMMENSA transforme les repas en expériences à vivre. Éteignez les écrans, rallumez les sens." />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070504; --ink:#f7e6d2; --muted:#c7b7a2;
+      --accent:#f28c28; --accent2:#ffb15e;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+    a{color:var(--accent2);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    header{position:sticky;top:0;backdrop-filter:blur(6px);background:rgba(7,5,4,.8);padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.05);z-index:10;}
+    .wrap{max-width:1000px;margin:auto;padding:0 20px;}
+    .logo{font-family:Cinzel,serif;font-size:22px;font-weight:700;letter-spacing:.04em;}
+    nav{float:right;}
+    nav a{margin-left:16px;}
+    .btn{display:inline-block;padding:12px 20px;border-radius:999px;background:linear-gradient(180deg,var(--accent2),var(--accent));color:#1b0f06;font-weight:700;box-shadow:0 4px 12px rgba(242,140,40,.3);}
+    .btn:hover{filter:brightness(1.05);}
+    .hero{text-align:center;padding:100px 20px;}
+    .hero h1{font-family:Cinzel,serif;font-size:clamp(36px,5vw,60px);line-height:1.1;margin-bottom:12px;}
+    .hero p{max-width:720px;margin:0 auto 24px;color:var(--muted);}
+    section{padding:70px 0;border-top:1px solid rgba(255,255,255,.05);}
+    h2{font-family:Cinzel,serif;font-size:clamp(26px,3vw,40px);margin-bottom:14px;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+    .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:20px;}
+    .card h3{font-family:Cinzel,serif;margin:10px 0;}
+    .card p{color:var(--muted);}
+    footer{text-align:center;padding:50px 0 60px;color:#bda991;font-size:.9rem;}
+    @media(max-width:600px){nav{float:none;text-align:center;margin-top:8px;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="logo">COMMENSA</span>
+    <nav>
+      <a href="#rituels">Rituels</a>
+      <a href="#restaurants">Restaurants</a>
+      <a href="#contact" class="btn">Réserver un appel</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Éteindre les écrans.<br>Rallumer les sens.</h1>
+    <p>COMMENSA aide les restaurants à créer un rituel hebdomadaire simple et fort : gestes symboliques, émotions partagées, identité retrouvée.</p>
+    <a href="#contact" class="btn">Réserver un appel</a>
+  </section>
+
+  <section id="rituels" class="wrap">
+    <h2>Exemples de rituels</h2>
+    <div class="grid">
+      <div class="card"><h3>☕ Rituel du Thé</h3><p>Service précis, respiration commune, geste de respect avant la dégustation.</p></div>
+      <div class="card"><h3>🤫 Repas du Silence</h3><p>Un service sans paroles. Saveurs et regards remplacent les mots.</p></div>
+      <div class="card"><h3>🛡️ Festin Viking</h3><p>Planche de partage et serment collectif : un repas qui unit.</p></div>
+      <div class="card"><h3>🌑 Dîner dans le noir</h3><p>Redécouvrir les textures, écouter les voix et sentir la présence.</p></div>
+      <div class="card"><h3>💬 La Palabre</h3><p>Chaque plat déclenche un thème de discussion, loin des écrans.</p></div>
+    </div>
+  </section>
+
+  <section id="restaurants" class="wrap">
+    <h2>Accompagnement restaurants</h2>
+    <p style="color:var(--muted);margin-bottom:20px;">Diagnostic, design d’expérience et kit opérationnel pour intégrer un rituel durable, sans bouleverser votre service.</p>
+    <div class="grid">
+      <div class="card"><h3>Diagnostic</h3><p>Atelier de 90 min pour identifier le rituel faisable dans votre établissement.</p></div>
+      <div class="card"><h3>Design</h3><p>Gestes, ambiance, script d’annonce et signalétique visuelle minimaliste.</p></div>
+      <div class="card"><h3>Kit & suivi</h3><p>Checklist, brief d’équipe, soirée pilote et label COMMENSA.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap" style="text-align:center;">
+    <h2>Réserver un appel découverte</h2>
+    <p style="color:var(--muted);margin-bottom:26px;">20 minutes pour comprendre votre salle, votre public et imaginer un rituel à votre mesure.</p>
+
+    <!-- Bouton Cal.com -->
+    <a href="https://cal.com/ton-identifiant/20min" target="_blank" class="btn">Réserver maintenant</a>
+
+    <!-- Widget embarqué (facultatif) -->
+    <script async src="https://cal.com/embed.js"></script>
+    <div class="calcom" data-cal-link="ton-identifiant/20min" data-cal-config='{"layout":"month_view"}'></div>
+    <script>
+      window.addEventListener("load",function(){
+        if (window.Cal) Cal("ui",{styles:{branding:{brandColor:"#f28c28"}}});
+      });
+    </script>
+  </section>
+</main>
+
+<footer>
+  © <span id="y"></span> COMMENSA — Commensalité : partager la table
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</footer>
+
+</body>
+</html>
