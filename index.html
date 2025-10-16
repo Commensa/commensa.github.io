@@ -8,152 +8,151 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ====== Thème premium noir & sépia ====== */
     :root{
-      --bg:#0b0908;            /* noir profond très légèrement chaud */
-      --ink:#f5e6cf;           /* sépia clair crème */
-      --muted:#c9b79e;         /* sépia médian */
-      --line:rgba(255,255,255,.06);
-      --accent:#f28c28;        /* orange miel */
-      --accent2:#ffb15e;       /* miel clair */
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg:#0b0908; --ink:#f5e6cf; --muted:#c9b79e; --line:rgba(255,255,255,.06);
+      --accent:#f28c28; --accent2:#ffb15e; --shadow:0 10px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
-      background:radial-gradient(1000px 600px at 70% -10%, rgba(242,140,40,.08), transparent 60%),
-                 radial-gradient(800px 500px at 10% 120%, rgba(255,177,94,.06), transparent 60%),
-                 var(--bg);
-      color:var(--ink);
-      line-height:1.6;
-      overflow-x:hidden;
+      background:
+        radial-gradient(1000px 600px at 70% -10%, rgba(242,140,40,.08), transparent 60%),
+        radial-gradient(800px 500px at 10% 120%, rgba(255,177,94,.06), transparent 60%),
+        var(--bg);
+      color:var(--ink); line-height:1.6; overflow-x:hidden;
     }
-    /* Grain subtil */
     body::before{
-      content:"";
-      position:fixed;inset:0;pointer-events:none;z-index:0;
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
       background:
         radial-gradient(1200px 800px at 50% -20%,rgba(0,0,0,.35),transparent 60%),
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.04"/></svg>');
       mix-blend-mode:multiply;
     }
-    a{color:var(--accent2);text-decoration:none;}
-    a:hover{text-decoration:underline;}
+    a{color:var(--accent2);text-decoration:none}
+    a:hover{text-decoration:underline}
 
-    /* ====== Header & Nav ====== */
-    header{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:saturate(120%) blur(8px);
-      background:rgba(11,9,8,.75);
-      border-bottom:1px solid var(--line);
-    }
-    .wrap{max-width:1140px;margin:auto;padding:0 22px;}
-    .bar{display:flex;align-items:center;justify-content:space-between;height:68px;}
-    .logo{
-      display:flex;align-items:center;gap:12px;
-      font-family:Cinzel,serif;font-size:22px;font-weight:700;letter-spacing:.04em;
-    }
-    .logo .sigil{
-      width:28px;height:28px;border-radius:50%;
-      background:radial-gradient(circle at 35% 35%, var(--accent2), var(--accent) 60%, #6b3b0e 100%);
-      box-shadow:0 0 32px rgba(242,140,40,.35), inset 0 0 12px rgba(0,0,0,.6);
-      position:relative;
-    }
-    .logo .sigil::after{
-      content:"";position:absolute;inset:6px;border:1px solid rgba(0,0,0,.45);border-radius:50%;
-    }
+    /* Header */
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(120%) blur(8px);
+      background:rgba(11,9,8,.75); border-bottom:1px solid var(--line)}
+    .wrap{max-width:1140px;margin:auto;padding:0 22px}
+    .bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{width:28px;height:28px;border-radius:8px;object-fit:cover;filter:grayscale(.15) sepia(.2) contrast(1.05)}
+    .logo{font-family:Cinzel,serif;font-size:22px;font-weight:700;letter-spacing:.04em}
     nav a{margin-left:18px;font-weight:600;color:var(--ink);opacity:.85}
     nav a.active{color:var(--accent2)}
-    .btn{
-      display:inline-block;padding:12px 20px;border-radius:999px;
-      background:linear-gradient(180deg,var(--accent2),var(--accent));
-      color:#1b0f06;font-weight:800;box-shadow:0 6px 18px rgba(242,140,40,.3);
-      transition:transform .18s ease, filter .18s ease;
-    }
+    .btn{display:inline-block;padding:12px 20px;border-radius:999px;
+      background:linear-gradient(180deg,var(--accent2),var(--accent)); color:#1b0f06;
+      font-weight:800; box-shadow:0 6px 18px rgba(242,140,40,.3);
+      transition:transform .18s ease, filter .18s ease}
     .btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
-    .btn.ghost{
-      background:transparent;color:var(--ink);border:1px solid var(--line);
-      box-shadow:none
-    }
-    /* Aura mystérieuse au survol */
-    .btn[data-glow]:hover{
-      box-shadow:0 0 0 2px rgba(242,140,40,.15), 0 0 40px rgba(242,140,40,.35), var(--shadow);
-    }
+    .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+    .btn[data-glow]:hover{box-shadow:0 0 0 2px rgba(242,140,40,.15), 0 0 40px rgba(242,140,40,.35), var(--shadow)}
 
-    /* ====== Pages (SPA) ====== */
+    /* Pages */
     main{position:relative;z-index:1}
-    .page{display:none;animation:fade .35s ease both;}
+    .page{display:none;animation:fade .35s ease both}
     .page.active{display:block}
     @keyframes fade{from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none}}
 
-    /* ====== Sections ====== */
+    /* Sections */
     section{padding:80px 0;border-top:1px solid var(--line)}
-    .hero{
-      text-align:center;padding:120px 0 90px;border-top:none;position:relative;overflow:hidden;
-    }
-    .hero h1{
-      font-family:Cinzel,serif;font-size:clamp(38px,5vw,66px);line-height:1.08;margin-bottom:14px;
-      text-shadow:0 1px 0 rgba(0,0,0,.4);
-    }
+    .hero{text-align:center;padding:120px 0 90px;border-top:none;position:relative;overflow:hidden}
+    .hero h1{font-family:Cinzel,serif;font-size:clamp(38px,5vw,66px);line-height:1.08;margin-bottom:14px;text-shadow:0 1px 0 rgba(0,0,0,.4)}
     .hero p{max-width:770px;margin:0 auto 26px;color:var(--muted)}
-    .halo{
-      position:absolute;inset:-10% -10% auto -10%;height:70%;
-      background:radial-gradient(500px 320px at 50% 0%, rgba(242,140,40,.10), transparent 70%);
-      filter:blur(12px);pointer-events:none;
-    }
-    .grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;
-    }
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
-      border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);
-      transform:translateZ(0);
-    }
+    .hero .hero-logo{width:84px;height:84px;border-radius:18px;object-fit:cover;display:block;margin:0 auto 16px;
+      filter:grayscale(.1) sepia(.2) contrast(1.05); box-shadow:0 6px 24px rgba(0,0,0,.45)}
+    .halo{position:absolute;inset:-10% -10% auto -10%;height:70%;
+      background:radial-gradient(500px 320px at 50% 0%, rgba(242,140,40,.10), transparent 70%); filter:blur(12px);pointer-events:none}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
     .card h3{font-family:Cinzel,serif;margin:10px 0}
     .card p{color:var(--muted)}
-    .chip{
-      display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);
-      color:var(--muted);font-size:.85rem
-    }
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.85rem}
     .lead{font-size:1.1rem;color:var(--muted);max-width:880px}
+
+    /* Images utilitaires */
+    .img-cover{width:100%;height:auto;border-radius:12px;display:block;object-fit:cover}
+    .img-ritual{width:72px;height:72px;flex:0 0 72px;border-radius:14px;object-fit:cover;object-position:center;
+      filter:grayscale(.15) sepia(.25) contrast(1.05); box-shadow:0 6px 16px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06)}
+    .img-card{width:100%;aspect-ratio:16/9;height:auto;object-fit:cover;border-radius:12px;margin-bottom:12px;filter:grayscale(.2) sepia(.25)}
+    .avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:0 0 64px;border:1px solid var(--line);box-shadow:0 6px 16px rgba(0,0,0,.35)}
 
     /* Révélations au scroll */
     [data-reveal]{opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease}
     [data-reveal].seen{opacity:1;transform:none}
 
-    /* Carrousel témoignages */
+    /* Carousel */
     .carousel{position:relative;overflow:hidden;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
     .slides{display:flex;transition:transform .5s ease}
-    .slide{min-width:100%;padding:30px}
+    .slide{min-width:100%;padding:28px}
     .car-nav{display:flex;gap:10px;justify-content:center;margin-top:14px}
     .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25);border:1px solid var(--line);cursor:pointer}
     .dot.active{background:linear-gradient(180deg,var(--accent2),var(--accent))}
+    .quote{display:flex;gap:14px;align-items:flex-start}
 
-    /* Liste rituels (tous des slides) */
+    /* Rituels */
     .ritual{display:flex;gap:16px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)}
-    .ritual .icon{font-size:22px;line-height:1}
     .ritual h4{font-family:Cinzel,serif;margin:0 0 4px}
 
-    /* Particules mystères (canvas) */
+    /* Particules */
     canvas#veil{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.55;mix-blend-mode:screen}
 
-    footer{text-align:center;padding:60px 0 80px;color:#bda991;font-size:.9rem;}
+    footer{text-align:center;padding:60px 0 80px;color:#bda991;font-size:.9rem}
 
     @media(max-width:640px){
       nav{display:none}
       .hero{padding:96px 0 72px}
+      .img-ritual{width:60px;height:60px}
+      .avatar{width:56px;height:56px}
     }
+
+    /* ===== Splash intro ===== */
+#intro{
+  position:fixed; inset:0; z-index:1000; 
+  background: radial-gradient(1200px 800px at 50% 40%, rgba(242,140,40,.10), rgba(0,0,0,.85) 65%), #0b0908;
+  display:grid; place-items:center;
+  transition:opacity .8s ease, visibility .8s ease; 
+}
+#intro.hide{ opacity:0; visibility:hidden }
+#introLogo{
+  width:min(38vw,220px); height:min(38vw,220px); object-fit:cover; border-radius:24px;
+  filter:grayscale(.1) sepia(.25) contrast(1.05);
+  box-shadow:0 12px 40px rgba(0,0,0,.55), 0 0 80px rgba(242,140,40,.25);
+  animation:float 2.2s ease-in-out infinite alternate;
+}
+@keyframes float{
+  from{ transform:translateY(0) scale(1)} to{ transform:translateY(-6px) scale(1.015)}
+}
+#introFx{ position:absolute; inset:0; mix-blend-mode:screen; opacity:.85; }
+
+/* Accessibilité : si l’utilisateur préfère réduire les animations, on skip */
+@media (prefers-reduced-motion: reduce) {
+  #introLogo{ animation:none }
+}
+
   </style>
 </head>
 <body>
 
-  <!-- Particules d'ambiance -->
+  <!-- INTRO / SPLASH -->
+<div id="intro" aria-hidden="true">
+  <canvas id="introFx"></canvas>
+  <img id="introLogo" src="./assets/logo.jpg" alt="" width="240" height="240" />
+</div>
+
+  <!-- Particules -->
   <canvas id="veil"></canvas>
 
   <header>
     <div class="wrap bar">
-      <div class="logo"><span class="sigil"></span><span>COMMENSA</span></div>
+      <div class="brand">
+        <img src="./assets/logo.jpg" alt="Logo COMMENSA" width="28" height="28" loading="eager" decoding="sync">
+        <span class="logo">COMMENSA</span>
+      </div>
       <nav id="nav">
         <a href="#/" data-link>Accueil</a>
         <a href="#/rituels" data-link>Rituels</a>
@@ -166,11 +165,12 @@
   </header>
 
   <main>
-    <!-- ====== Accueil ====== -->
+    <!-- Accueil -->
     <div class="page active" id="home">
       <section class="hero">
         <div class="halo"></div>
         <div class="wrap">
+          <img class="hero-logo" src="./assets/logo.jpg" alt="COMMENSA" width="84" height="84" loading="eager" decoding="async">
           <h1>Éteindre les écrans.<br>Rallumer les sens.</h1>
           <p class="lead">Manger n’est pas seulement se nourrir : c’est un acte de corps, de regard et de mémoire. COMMENSA aide les restaurants à instaurer un <em>rituel</em> hebdomadaire simple et fort : gestes symboliques, émotions partagées, identité retrouvée.</p>
           <div style="margin-top:18px;display:flex;gap:12px;justify-content:center">
@@ -201,58 +201,70 @@
       </section>
     </div>
 
-    <!-- ====== Rituels (tous les exemples des slides) ====== -->
+    <!-- Rituels -->
     <div class="page" id="rituels">
       <section class="wrap">
         <h2 style="font-family:Cinzel,serif;margin-bottom:10px">Exemples de rituels</h2>
         <p class="lead" style="margin-bottom:22px">Un rituel par établissement : minimal, symbolique, mémorable.</p>
         <div class="grid">
           <div class="ritual" data-reveal>
-            <div class="icon">☕</div>
+            <img class="img-ritual" src="./assets/rituel_the.jpg" alt="Rituel du thé" width="72" height="72" loading="lazy" decoding="async">
             <div><h4>Le rituel du Thé</h4><p>Gestes précis, respiration synchronisée. Chaque tasse se tend des deux mains, avec un léger salut.</p></div>
           </div>
           <div class="ritual" data-reveal>
-            <div class="icon">💬</div>
-            <div><h4>La Palabre</h4><p>Les portables sont proscrits ; ici on parle, on devise, et l’on est servis au rythme des débats.</p></div>
-          </div>
-          <div class="ritual" data-reveal>
-            <div class="icon">🌲</div>
-            <div><h4>Le Grand Cèdre</h4><p>Un mezzé sans couvert. Les doigts sont lavés au parfum d’orange avant et après.</p></div>
-          </div>
-          <div class="ritual" data-reveal>
-            <div class="icon">🛡️</div>
-            <div><h4>Le Festin Viking</h4><p>Grande planche en bois brut. On frappe la table trois fois : vœu, colère, rêve.</p></div>
-          </div>
-          <div class="ritual" data-reveal>
-            <div class="icon">🤫</div>
+            <img class="img-ritual" src="./assets/rituel_silence.jpg" alt="Repas du silence" width="72" height="72" loading="lazy" decoding="async">
             <div><h4>Le Silence</h4><p>Tout le repas se fait sans parole. Les serveurs communiquent par gestes.</p></div>
           </div>
           <div class="ritual" data-reveal>
-            <div class="icon">🔥</div>
-            <div><h4>L’invention du Feu</h4><p>Des plats et desserts flambent. On brûle des papiers : souvenir, fardeau, souhait.</p></div>
+            <img class="img-ritual" src="./assets/rituel_viking.jpg" alt="Festin viking" width="72" height="72" loading="lazy" decoding="async">
+            <div><h4>Le Festin Viking</h4><p>Grande planche en bois brut. On frappe la table trois fois : vœu, colère, rêve.</p></div>
           </div>
           <div class="ritual" data-reveal>
-            <div class="icon">🌑</div>
+            <img class="img-ritual" src="./assets/rituel_obscurite.jpg" alt="Dîner dans le noir" width="72" height="72" loading="lazy" decoding="async">
             <div><h4>L’Obscurité</h4><p>Dans le noir total, on s’écoute et l’on se laisse surprendre par les saveurs.</p></div>
           </div>
           <div class="ritual" data-reveal>
-            <div class="icon">🔁</div>
+            <img class="img-ritual" src="./assets/rituel_palabre.jpg" alt="La palabre" width="72" height="72" loading="lazy" decoding="async">
+            <div><h4>La Palabre</h4><p>Les portables sont proscrits ; ici on parle, on devise, et l’on est servis au rythme des débats.</p></div>
+          </div>
+          <div class="ritual" data-reveal>
+            <img class="img-ritual" src="./assets/rituel_cedre.jpg" alt="Le Grand Cèdre" width="72" height="72" loading="lazy" decoding="async">
+            <div><h4>Le Grand Cèdre</h4><p>Un mezzé sans couvert. Les doigts sont lavés au parfum d’orange avant et après.</p></div>
+          </div>
+          <div class="ritual" data-reveal>
+            <img class="img-ritual" src="./assets/rituel_feu.jpg" alt="L’invention du feu" width="72" height="72" loading="lazy" decoding="async">
+            <div><h4>L’invention du Feu</h4><p>Des plats et desserts flambent. On brûle des papiers : souvenir, fardeau, souhait.</p></div>
+          </div>
+          <div class="ritual" data-reveal>
+            <img class="img-ritual" src="./assets/rituel_tournante.jpg" alt="Table tournante" width="72" height="72" loading="lazy" decoding="async">
             <div><h4>La Table Tournante</h4><p>Après chaque plat, on change de place pour découvrir un nouveau convive.</p></div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- ====== Restaurants (exemples & confiance) ====== -->
+    <!-- Restaurants -->
     <div class="page" id="restaurants">
       <section class="wrap">
         <h2 style="font-family:Cinzel,serif;margin-bottom:10px">Ils nous font déjà confiance</h2>
         <p class="lead" style="margin-bottom:22px">Quelques maisons engagées dans la commensalité (sélection).</p>
         <div class="grid" style="margin-bottom:26px">
-          <div class="card" data-reveal><h3>La Verrière — Paris 2ᵉ</h3><p>« Repas du Silence » le mardi soir. Signalétique discrète, service chorégraphié.</p></div>
-          <div class="card" data-reveal><h3>Le Grand Chêne — Lyon</h3><p>« Le Grand Cèdre » : mezzé au parfum d’orange, lavage des mains rituel.</p></div>
-          <div class="card" data-reveal><h3>Casa di Mare — Marseille</h3><p>« L’invention du Feu » : flambages poétiques, papiers-souhaits.</p></div>
-          <div class="card" data-reveal><h3>Atelier du Goût — Bordeaux</h3><p>« Table Tournante » : rencontres conviviales à chaque service.</p></div>
+          <div class="card" data-reveal>
+            <img class="img-card" src="./assets/restaurant_verriere.jpg" alt="La Verrière — Paris 2e" loading="lazy" decoding="async">
+            <h3>La Verrière — Paris 2ᵉ</h3><p>« Repas du Silence » le mardi soir. Signalétique discrète, service chorégraphié.</p>
+          </div>
+          <div class="card" data-reveal>
+            <img class="img-card" src="./assets/restaurant_grandchene.jpg" alt="Le Grand Chêne — Lyon" loading="lazy" decoding="async">
+            <h3>Le Grand Chêne — Lyon</h3><p>« Le Grand Cèdre » : mezzé au parfum d’orange, lavage des mains rituel.</p>
+          </div>
+          <div class="card" data-reveal>
+            <img class="img-card" src="./assets/restaurant_casadimare.jpg" alt="Casa di Mare — Marseille" loading="lazy" decoding="async">
+            <h3>Casa di Mare — Marseille</h3><p>« L’invention du Feu » : flambages poétiques, papiers-souhaits.</p>
+          </div>
+          <div class="card" data-reveal>
+            <img class="img-card" src="./assets/restaurant_atelierdugout.jpg" alt="Atelier du Goût — Bordeaux" loading="lazy" decoding="async">
+            <h3>Atelier du Goût — Bordeaux</h3><p>« Table Tournante » : rencontres conviviales à chaque service.</p>
+          </div>
         </div>
 
         <h3 style="font-family:Cinzel,serif;margin:12px 0 8px">Accompagnement</h3>
@@ -264,29 +276,35 @@
       </section>
     </div>
 
-    <!-- ====== Témoignages (mot pour mot des slides) ====== -->
+    <!-- Témoignages -->
     <div class="page" id="temoignages">
       <section class="wrap">
         <h2 style="font-family:Cinzel,serif;margin-bottom:16px">Témoignages</h2>
         <div class="carousel" data-reveal>
           <div class="slides" id="slides">
             <article class="slide">
-              <p style="color:var(--muted);font-size:1.05rem">
-                « Je proposais déjà un rituel. Chez moi, ce n’est pas juste un dîner : c’est un moment à part.
-                Chaque jeudi soir, par exemple, on éteint les téléphones, on baisse les lumières, et tout le monde
-                partage le même pain encore chaud. Certains rient, d’autres se taisent — mais tout le monde ressent.
-                Quand j’ai découvert COMMENSA, je me suis reconnu. Leur démarche met en valeur ces gestes qu’on fait souvent sans y penser, mais qui ont une âme.
-                Ils m’ont aidé à nommer ce que je faisais déjà : transformer un repas en expérience.
-                Aujourd’hui, mon rituel fait partie du mouvement COMMENSA. on le retrouve sur leur carte des tables initiées, et j’accueille une clientèle qui vient pour vivre quelque chose, pas seulement consommer.
-                COMMENSA ne vous impose rien : ils accompagnent, amplifient, structurent. Juste ce qu’il faut pour que la flamme continue de brûler. »
-              </p>
+              <div class="quote">
+                <img class="avatar" src="./assets/temoignage_restaurateurdejaritualise.jpg" alt="Restaurateur déjà ritualisé" width="64" height="64" loading="lazy" decoding="async">
+                <p style="color:var(--muted);font-size:1.05rem">
+                  « Je proposais déjà un rituel. Chez moi, ce n’est pas juste un dîner : c’est un moment à part.
+                  Chaque jeudi soir, par exemple, on éteint les téléphones, on baisse les lumières, et tout le monde
+                  partage le même pain encore chaud. Certains rient, d’autres se taisent — mais tout le monde ressent.
+                  Quand j’ai découvert COMMENSA, je me suis reconnu. Leur démarche met en valeur ces gestes qu’on fait souvent sans y penser, mais qui ont une âme.
+                  Ils m’ont aidé à nommer ce que je faisais déjà : transformer un repas en expérience.
+                  Aujourd’hui, mon rituel fait partie du mouvement COMMENSA. on le retrouve sur leur carte des tables initiées, et j’accueille une clientèle qui vient pour vivre quelque chose, pas seulement consommer.
+                  COMMENSA ne vous impose rien : ils accompagnent, amplifient, structurent. Juste ce qu’il faut pour que la flamme continue de brûler. »
+                </p>
+              </div>
             </article>
             <article class="slide">
-              <p style="color:var(--muted);font-size:1.05rem">
-                « Je n’avais pas de rituel… jusqu’à ce que je rencontre COMMENSA. J’avais envie de donner plus de sens à mes soirées, de proposer autre chose qu’un simple service.
-                Ensemble, on a imaginé un moment unique : le “Repas du Silence”. Une fois par semaine, on coupe la musique, les portables, et tout passe par le geste, le regard, le partage du pain.
-                Le résultat ? Une salle pleine, mais apaisée. Des clients qui se souviennent, qui en parlent (paradoxalement), qui reviennent. COMMENSA, c’est une manière de reconnecter la table à l’humain, sans artifices, avec des rituels simples, symboliques, sensoriels. J’en suis fière. Parce qu’ici, on ne vient plus seulement dîner. On vient vivre. »
-              </p>
+              <div class="quote">
+                <img class="avatar" src="./assets/temoignage_restauratricepasencoreritualisee.jpg" alt="Restauratrice pas encore ritualisée" width="64" height="64" loading="lazy" decoding="async">
+                <p style="color:var(--muted);font-size:1.05rem">
+                  « Je n’avais pas de rituel… jusqu’à ce que je rencontre COMMENSA. J’avais envie de donner plus de sens à mes soirées, de proposer autre chose qu’un simple service.
+                  Ensemble, on a imaginé un moment unique : le “Repas du Silence”. Une fois par semaine, on coupe la musique, les portables, et tout passe par le geste, le regard, le partage du pain.
+                  Le résultat ? Une salle pleine, mais apaisée. Des clients qui se souviennent, qui en parlent (paradoxalement), qui reviennent. COMMENSA, c’est une manière de reconnecter la table à l’humain, sans artifices, avec des rituels simples, symboliques, sensoriels. J’en suis fière. Parce qu’ici, on ne vient plus seulement dîner. On vient vivre. »
+                </p>
+              </div>
             </article>
           </div>
         </div>
@@ -297,7 +315,7 @@
       </section>
     </div>
 
-    <!-- ====== À propos ====== -->
+    <!-- À propos -->
     <div class="page" id="apropos">
       <section class="wrap">
         <h2 style="font-family:Cinzel,serif;margin-bottom:12px">Notre manifeste</h2>
@@ -310,18 +328,16 @@
       </section>
     </div>
 
-    <!-- ====== Contact (Cal.com) ====== -->
+    <!-- Contact -->
     <div class="page" id="contact">
       <section class="wrap" style="text-align:center">
         <h2 style="font-family:Cinzel,serif;margin-bottom:10px">Réserver un appel découverte</h2>
         <p class="lead" style="margin-bottom:22px">15 minutes ensemble, en visio ou au téléphone, pour comprendre votre salle, votre public et imaginer un rituel à votre mesure.</p>
 
-        <!-- Bouton Cal.com -->
         <a href="https://cal.com/commensa.rituels/bientotlevotre" target="_blank" class="btn" data-glow>Je réserve mon appel</a>
 
-        <!-- Widget embarqué -->
         <script async src="https://cal.com/embed.js"></script>
-        <div class="calcom" data-cal-link="ton-identifiant/20min" data-cal-config='{"layout":"month_view"}' style="margin-top:16px"></div>
+        <div class="calcom" data-cal-link="commensa.rituels/bientotlevotre" data-cal-config='{"layout":"month_view"}' style="margin-top:16px"></div>
         <script>
           window.addEventListener("load",function(){
             if (window.Cal) Cal("ui",{styles:{branding:{brandColor:"#f28c28"}}});
@@ -332,11 +348,92 @@
   </main>
 
   <footer>
-    © <span id="y"></span> Commensalité (n.f.) - du latin "mensa", la table : partager la table avec les commensaux habituels (oui, en gros des amis)
+    <div class="wrap" style="display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px">
+      <img src="./assets/logo.jpg" alt="Logo COMMENSA" width="22" height="22" style="border-radius:6px;filter:grayscale(.1) sepia(.2) contrast(1.05)">
+      <span>COMMENSA</span>
+    </div>
+    © <span id="y"></span> Commensalité (n.f.) — du latin « mensa », la table : partager la table avec les commensaux habituels.
   </footer>
 
   <script>
-    /* ====== Router SPA (hash) ====== */
+
+/* ====== Splash Intro avec particules « feu » ====== */
+(function(){
+  const intro = document.getElementById('intro');
+  const canvas = document.getElementById('introFx');
+  if(!intro || !canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W,H, sparks=[];
+  const MAX=120;                  // nb de particules
+  const LIFE=2200;                // durée d’affichage (ms)
+  const F_OUT=300;                // marge avant fade (ms)
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
+  addEventListener('resize', resize, {passive:true}); resize();
+
+  function spawn(){
+    // émetteur sous le logo (centre de l’écran)
+    const cx = W*0.5, cy = H*0.55;
+    for(let i=0;i<4;i++){
+      sparks.push({
+        x: cx + (Math.random()*60-30),
+        y: cy + (Math.random()*20+10),
+        vx: (Math.random()-.5)*0.35,
+        vy: -(Math.random()*1.6+0.6),
+        r: Math.random()*1.8 + 0.6,
+        a: Math.random()*Math.PI*2,
+        life: Math.random()*800 + 600
+      });
+    }
+    if(sparks.length>MAX) sparks = sparks.slice(-MAX);
+  }
+
+  function tick(t){
+    ctx.clearRect(0,0,W,H);
+    // halo discret
+    const g = ctx.createRadialGradient(W/2,H*0.52,0,W/2,H*0.52, Math.max(W,H)*0.35);
+    g.addColorStop(0,'rgba(255,200,150,.10)');
+    g.addColorStop(1,'rgba(255,200,150,0)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+
+    // particules
+    for(let i=sparks.length-1;i>=0;i--){
+      const p = sparks[i];
+      p.x += p.vx + Math.cos(p.a)*0.05;
+      p.y += p.vy; p.vy -= 0.002; // monte doucement (antigravité légère)
+      p.a += (Math.random()-.5)*0.12;
+      p.life -= 16;
+
+      const grd = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*16);
+      grd.addColorStop(0,'rgba(255,210,160,.18)');
+      grd.addColorStop(0.45,'rgba(242,140,40,.12)');
+      grd.addColorStop(1,'rgba(242,140,40,0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*16,0,Math.PI*2); ctx.fill();
+
+      if(p.life<=0 || p.y< -50) sparks.splice(i,1);
+    }
+    if(!reduced) spawn();
+    req = requestAnimationFrame(tick);
+  }
+  let req = requestAnimationFrame(tick);
+
+  // Fin de l’intro → fade + suppression du nœud
+  const endAt = performance.now() + (reduced ? 300 : LIFE);
+  function check(){
+    if(performance.now() >= endAt - F_OUT){
+      intro.classList.add('hide');
+      setTimeout(()=>{
+        cancelAnimationFrame(req);
+        intro.remove();
+      }, 800); // temps = transition CSS
+    } else { requestAnimationFrame(check); }
+  }
+  requestAnimationFrame(check);
+})();
+
+  /* Router SPA */
     const pages = {
       '/': document.getElementById('home'),
       '/rituels': document.getElementById('rituels'),
@@ -359,44 +456,37 @@
       setActive(hash||'/');
       window.scrollTo({top:0,behavior:'instant'});
     }
-    window.addEventListener('hashchange', route);
-    route();
+    window.addEventListener('hashchange', route); route();
 
-    /* ====== Année ====== */
+    /* Année */
     document.getElementById('y').textContent=new Date().getFullYear();
 
-    /* ====== Révélations au scroll ====== */
+    /* Reveal */
     const io=new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('seen'); io.unobserve(e.target);} });
     },{threshold:.12});
     document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 
-    /* ====== Carrousel témoignages ====== */
+    /* Carousel */
     const slides=document.getElementById('slides');
     const dots=[...document.querySelectorAll('.dot')];
-    function go(i){
-      slides.style.transform=`translateX(-${i*100}%)`;
-      dots.forEach((d,idx)=>d.classList.toggle('active', idx===i));
-    }
+    function go(i){ slides.style.transform=`translateX(-${i*100}%)`; dots.forEach((d,idx)=>d.classList.toggle('active', idx===i)); }
     dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.go)));
     let idx=0; setInterval(()=>{idx=(idx+1)%2; go(idx);}, 7000);
 
-    /* ====== Particules « voile » ====== */
+    /* Particules */
     const c=document.getElementById('veil'), ctx=c.getContext('2d');
     let W,H; const P=[];
-    function resize(){W= c.width = innerWidth; H= c.height = innerHeight;}
+    function resize(){W=c.width=innerWidth; H=c.height=innerHeight}
     addEventListener('resize',resize); resize();
-    for(let i=0;i<60;i++){
-      P.push({x:Math.random()*W,y:Math.random()*H, r:Math.random()*1.8+0.4, a:Math.random()*Math.PI*2, s:Math.random()*0.4+0.15});
-    }
+    for(let i=0;i<60;i++){ P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+0.4,a:Math.random()*Math.PI*2,s:Math.random()*0.4+0.15}); }
     function tick(){
       ctx.clearRect(0,0,W,H);
       for(const p of P){
-        p.x+=Math.cos(p.a)*p.s; p.y+=Math.sin(p.a)*p.s; p.a+= (Math.random()-.5)*0.08;
+        p.x+=Math.cos(p.a)*p.s; p.y+=Math.sin(p.a)*p.s; p.a+=(Math.random()-.5)*0.08;
         if(p.x<-10)p.x=W+10; if(p.x>W+10)p.x=-10; if(p.y<-10)p.y=H+10; if(p.y>H+10)p.y=-10;
         const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*18);
-        g.addColorStop(0,'rgba(255,200,150,.10)');
-        g.addColorStop(1,'rgba(255,200,150,0)');
+        g.addColorStop(0,'rgba(255,200,150,.10)'); g.addColorStop(1,'rgba(255,200,150,0)');
         ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*18,0,Math.PI*2); ctx.fill();
       }
       requestAnimationFrame(tick);
@@ -404,4 +494,3 @@
   </script>
 </body>
 </html>
-
