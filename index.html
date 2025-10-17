@@ -103,31 +103,64 @@
 
     footer{text-align:center;padding:60px 0 80px;color:#bda991;font-size:.9rem}
 
-    @media(max-width:640px){
-      nav{display:none}
-      .hero{padding:96px 0 72px}
-      .img-ritual{width:60px;height:60px}
-      .avatar{width:56px;height:56px}
+@media(max-width:640px){
+  /* on cache la nav desktop, pas tout <nav> */
+  #nav{display:none}
+  .hero{padding:96px 0 72px}
+  .img-ritual{width:60px;height:60px}
+  .avatar{width:56px;height:56px}
+  /* bouton burger visible en mobile */
+  .burger{display:inline-flex}
+}
+
+/* Bouton burger */
+.burger{
+  display:none; align-items:center; justify-content:center; gap:8px;
+  padding:10px 12px; border:1px solid var(--line); border-radius:10px;
+  background:rgba(255,255,255,.03); color:var(--ink); font-weight:700;
+}
+.burger .bars{width:18px;height:12px;position:relative}
+.burger .bars::before,.burger .bars::after,.burger .bar{
+  content:""; position:absolute; left:0; right:0; height:2px; background:var(--ink); opacity:.9
+}
+.burger .bar{top:5px}
+.burger .bars::before{top:0}
+.burger .bars::after{bottom:0}
+
+/* Panneau mobile */
+.mobile-nav{
+  position:fixed; inset:auto 0 0 0; top:68px; z-index:60;
+  background:rgba(11,9,8,.96); border-top:1px solid var(--line);
+  transform:translateY(-8px); opacity:0; visibility:hidden;
+  transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+.mobile-nav.open{transform:none; opacity:1; visibility:visible}
+.mobile-nav a{
+  display:block; padding:14px 22px; border-bottom:1px solid var(--line);
+  color:var(--ink)
+}
+.mobile-nav .cta{padding:16px 22px}
+
     }
 
     /* ===== Splash intro ===== */
 #intro{
-  position:fixed; inset:0; z-index:1000; 
+  position:fixed; inset:0; z-index:1000;
   background: radial-gradient(1200px 800px at 50% 40%, rgba(242,140,40,.10), rgba(0,0,0,.85) 65%), #0b0908;
   display:grid; place-items:center;
-  transition:opacity .8s ease, visibility .8s ease; 
+  transition:opacity .8s ease, visibility .8s ease;
+  overflow:hidden;             /* important pour contenir les particules */
 }
-#intro.hide{ opacity:0; visibility:hidden }
 #introLogo{
-  width:min(38vw,220px); height:min(38vw,220px); object-fit:cover; border-radius:24px;
-  filter:grayscale(.1) sepia(.25) contrast(1.05);
-  box-shadow:0 12px 40px rgba(0,0,0,.55), 0 0 80px rgba(242,140,40,.25);
-  animation:float 2.2s ease-in-out infinite alternate;
+  position:relative;           /* reste centré */
+  z-index:1;
 }
-@keyframes float{
-  from{ transform:translateY(0) scale(1)} to{ transform:translateY(-6px) scale(1.015)}
+#introFx{
+  position:absolute; inset:0; z-index:2;  /* canvas au-dessus du logo */
+  mix-blend-mode:screen; pointer-events:none;
+  opacity:.95;                  /* plus visible */
 }
-#introFx{ position:absolute; inset:0; mix-blend-mode:screen; opacity:.85; }
+
 
 /* Accessibilité : si l’utilisateur préfère réduire les animations, on skip */
 @media (prefers-reduced-motion: reduce) {
@@ -140,29 +173,50 @@
 
   <!-- INTRO / SPLASH -->
 <div id="intro" aria-hidden="true">
-  <canvas id="introFx"></canvas>
+  <!-- on place d'abord le logo -->
   <img id="introLogo" src="./assets/logo.jpg" alt="" width="240" height="240" />
+  <!-- puis le canvas PAR-DESSUS -->
+  <canvas id="introFx"></canvas>
 </div>
 
   <!-- Particules -->
   <canvas id="veil"></canvas>
 
-  <header>
-    <div class="wrap bar">
-      <div class="brand">
-        <img src="./assets/logo.jpg" alt="Logo COMMENSA" width="28" height="28" loading="eager" decoding="sync">
-        <span class="logo">COMMENSA</span>
-      </div>
-      <nav id="nav">
-        <a href="#/" data-link>Accueil</a>
-        <a href="#/rituels" data-link>Rituels</a>
-        <a href="#/restaurants" data-link>Restaurants</a>
-        <a href="#/temoignages" data-link>Témoignages</a>
-        <a href="#/apropos" data-link>À propos</a>
-        <a href="#/contact" class="btn" data-glow data-link>Réserver un appel</a>
-      </nav>
+<header>
+  <div class="wrap bar">
+    <div class="brand">
+      <img src="./assets/logo.jpg" alt="Logo COMMENSA" width="28" height="28" loading="eager" decoding="sync">
+      <span class="logo">COMMENSA</span>
     </div>
-  </header>
+
+    <!-- Nav desktop -->
+    <nav id="nav">
+      <a href="#/" data-link>Accueil</a>
+      <a href="#/rituels" data-link>Rituels</a>
+      <a href="#/restaurants" data-link>Restaurants</a>
+      <a href="#/temoignages" data-link>Témoignages</a>
+      <a href="#/apropos" data-link>À propos</a>
+      <a href="#/contact" class="btn" data-glow data-link>Réserver un appel</a>
+    </nav>
+
+    <!-- Bouton hamburger (mobile) -->
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mobileNav">
+      <span class="bars" aria-hidden="true"><span class="bar"></span></span>
+      Menu
+    </button>
+  </div>
+
+  <!-- Panneau mobile -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#/" data-link>Accueil</a>
+    <a href="#/rituels" data-link>Rituels</a>
+    <a href="#/restaurants" data-link>Restaurants</a>
+    <a href="#/temoignages" data-link>Témoignages</a>
+    <a href="#/apropos" data-link>À propos</a>
+    <div class="cta"><a href="#/contact" class="btn" data-glow data-link>Réserver un appel</a></div>
+  </nav>
+</header>
+
 
   <main>
     <!-- Accueil -->
@@ -458,6 +512,33 @@
     }
     window.addEventListener('hashchange', route); route();
 
+    /* ===== Menu mobile ===== */
+const burger = document.getElementById('burger');
+const mobileNav = document.getElementById('mobileNav');
+
+function closeMobile(){
+  mobileNav.classList.remove('open');
+  burger?.setAttribute('aria-expanded','false');
+}
+function openMobile(){
+  mobileNav.classList.add('open');
+  burger?.setAttribute('aria-expanded','true');
+}
+burger?.addEventListener('click', ()=>{
+  const open = mobileNav.classList.contains('open');
+  open ? closeMobile() : openMobile();
+});
+/* fermer après navigation */
+mobileNav.querySelectorAll('a[data-link]').forEach(a=>{
+  a.addEventListener('click', closeMobile);
+});
+/* fermer si on passe en desktop */
+window.addEventListener('resize', ()=>{
+  if (window.innerWidth > 640) closeMobile();
+});
+/* fermer aussi quand la route change (sécurité) */
+window.addEventListener('hashchange', closeMobile);
+
     /* Année */
     document.getElementById('y').textContent=new Date().getFullYear();
 
@@ -494,3 +575,4 @@
   </script>
 </body>
 </html>
+
