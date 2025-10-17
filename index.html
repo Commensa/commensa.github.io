@@ -118,6 +118,7 @@
   transition:opacity .8s ease, visibility .8s ease; 
 }
 #intro.hide{ opacity:0; visibility:hidden }
+#introFx{ position:absolute; inset:0; mix-blend-mode:screen; opacity:.85; }
 #introLogo{
   width:min(38vw,220px); height:min(38vw,220px); object-fit:cover; border-radius:24px;
   filter:grayscale(.1) sepia(.25) contrast(1.05);
@@ -127,7 +128,6 @@
 @keyframes float{
   from{ transform:translateY(0) scale(1)} to{ transform:translateY(-6px) scale(1.015)}
 }
-#introFx{ position:absolute; inset:0; mix-blend-mode:screen; opacity:.85; }
 
 /* Accessibilité : si l’utilisateur préfère réduire les animations, on skip */
 @media (prefers-reduced-motion: reduce) {
@@ -357,7 +357,7 @@
   </footer>
 
   <script>
-<script>
+
 /* ====== Splash Intro avec particules « feu » ====== */
 (function(){
   const intro = document.getElementById('intro');
@@ -433,7 +433,6 @@
   }
   requestAnimationFrame(check);
 })();
-</script>
 
   /* Router SPA */
     const pages = {
@@ -496,3 +495,4 @@
   </script>
 </body>
 </html>
+
