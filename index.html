@@ -103,139 +103,67 @@
 
     footer{text-align:center;padding:60px 0 80px;color:#bda991;font-size:.9rem}
 
-@media(max-width:640px){
-  /* on cache la nav desktop, pas tout <nav> */
-  #nav{display:none}
-  .hero{padding:96px 0 72px}
-  .img-ritual{width:60px;height:60px}
-  .avatar{width:56px;height:56px}
-  /* bouton burger visible en mobile */
-  .burger{display:inline-flex}
-}
-
-/* Bouton burger */
-.burger{
-  display:none; align-items:center; justify-content:center; gap:8px;
-  padding:10px 12px; border:1px solid var(--line); border-radius:10px;
-  background:rgba(255,255,255,.03); color:var(--ink); font-weight:700;
-}
-.burger .bars{width:18px;height:12px;position:relative}
-.burger .bars::before,.burger .bars::after,.burger .bar{
-  content:""; position:absolute; left:0; right:0; height:2px; background:var(--ink); opacity:.9
-}
-.burger .bar{top:5px}
-.burger .bars::before{top:0}
-.burger .bars::after{bottom:0}
-
-/* Panneau mobile */
-.mobile-nav{
-  position:fixed; inset:auto 0 0 0; top:68px; z-index:60;
-  background:rgba(11,9,8,.96); border-top:1px solid var(--line);
-  transform:translateY(-8px); opacity:0; visibility:hidden;
-  transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
-}
-.mobile-nav.open{transform:none; opacity:1; visibility:visible}
-.mobile-nav a{
-  display:block; padding:14px 22px; border-bottom:1px solid var(--line);
-  color:var(--ink)
-}
-.mobile-nav .cta{padding:16px 22px}
-
+    @media(max-width:640px){
+      nav{display:none}
+      .hero{padding:96px 0 72px}
+      .img-ritual{width:60px;height:60px}
+      .avatar{width:56px;height:56px}
     }
 
-    /* ===== Splash intro ===== */
-/* ===== Splash intro (fix iOS + fond opaque + au-dessus du logo) ===== */
+/* ===== Splash intro ===== */
 #intro{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  /* Fond vraiment opaque pour ne rien voir derrière */
-  background:#0b0908;
-  /* halo par-dessus le fond */
-  background:
-    radial-gradient(1200px 800px at 50% 40%, rgba(242,140,40,.10), rgba(0,0,0,.95) 65%),
-    #0b0908;
+  position:fixed; inset:0; z-index:1000; 
+  background: radial-gradient(1200px 800px at 50% 40%, rgba(242,140,40,.10), rgba(0,0,0,.85) 65%), #0b0908;
   display:grid; place-items:center;
-  /* iOS: fait bien 100% de la fenêtre visible */
-  height:100svh;
-  transition:opacity .8s ease, visibility .8s ease;
-  overflow:hidden;
+  transition:opacity .8s ease, visibility .8s ease; 
 }
-#intro.hide{opacity:0;visibility:hidden}
+#intro.hide{ opacity:0; visibility:hidden }
 #introLogo{
-  position:relative; z-index:1;
-  width:min(44vw,240px); height:min(44vw,240px);
-  object-fit:cover; border-radius:24px;
+  width:min(38vw,220px); height:min(38vw,220px); object-fit:cover; border-radius:24px;
   filter:grayscale(.1) sepia(.25) contrast(1.05);
   box-shadow:0 12px 40px rgba(0,0,0,.55), 0 0 80px rgba(242,140,40,.25);
   animation:float 2.2s ease-in-out infinite alternate;
 }
-#introFx{
-  position:absolute; inset:0; z-index:2;   /* au-DESSUS du logo */
-  mix-blend-mode:screen; pointer-events:none;
-  opacity:.95;
+@keyframes float{
+  from{ transform:translateY(0) scale(1)} to{ transform:translateY(-6px) scale(1.015)}
 }
-@keyframes float{from{transform:translateY(0) scale(1)}to{transform:translateY(-6px) scale(1.015)}}
-
-/* Bloque le scroll pendant le splash */
-body.lock{overflow:hidden;height:100svh}
-
+#introFx{ position:absolute; inset:0; mix-blend-mode:screen; opacity:.85; }
 
 /* Accessibilité : si l’utilisateur préfère réduire les animations, on skip */
 @media (prefers-reduced-motion: reduce) {
   #introLogo{ animation:none }
 }
 
+    
   </style>
 </head>
 <body>
 
   <!-- INTRO / SPLASH -->
 <div id="intro" aria-hidden="true">
-  <!-- on place d'abord le logo -->
-  <img id="introLogo" src="./assets/logo.jpg" alt="" width="240" height="240" />
-  <!-- puis le canvas PAR-DESSUS -->
   <canvas id="introFx"></canvas>
+  <img id="introLogo" src="./assets/logo.jpg" alt="" width="240" height="240" />
 </div>
 
   <!-- Particules -->
   <canvas id="veil"></canvas>
 
-<header>
-  <div class="wrap bar">
-    <div class="brand">
-      <img src="./assets/logo.jpg" alt="Logo COMMENSA" width="28" height="28" loading="eager" decoding="sync">
-      <span class="logo">COMMENSA</span>
+  <header>
+    <div class="wrap bar">
+      <div class="brand">
+        <img src="./assets/logo.jpg" alt="Logo COMMENSA" width="28" height="28" loading="eager" decoding="sync">
+        <span class="logo">COMMENSA</span>
+      </div>
+      <nav id="nav">
+        <a href="#/" data-link>Accueil</a>
+        <a href="#/rituels" data-link>Rituels</a>
+        <a href="#/restaurants" data-link>Restaurants</a>
+        <a href="#/temoignages" data-link>Témoignages</a>
+        <a href="#/apropos" data-link>À propos</a>
+        <a href="#/contact" class="btn" data-glow data-link>Réserver un appel</a>
+      </nav>
     </div>
-
-    <!-- Nav desktop -->
-    <nav id="nav">
-      <a href="#/" data-link>Accueil</a>
-      <a href="#/rituels" data-link>Rituels</a>
-      <a href="#/restaurants" data-link>Restaurants</a>
-      <a href="#/temoignages" data-link>Témoignages</a>
-      <a href="#/apropos" data-link>À propos</a>
-      <a href="#/contact" class="btn" data-glow data-link>Réserver un appel</a>
-    </nav>
-
-    <!-- Bouton hamburger (mobile) -->
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="mobileNav">
-      <span class="bars" aria-hidden="true"><span class="bar"></span></span>
-      Menu
-    </button>
-  </div>
-
-  <!-- Panneau mobile -->
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="#/" data-link>Accueil</a>
-    <a href="#/rituels" data-link>Rituels</a>
-    <a href="#/restaurants" data-link>Restaurants</a>
-    <a href="#/temoignages" data-link>Témoignages</a>
-    <a href="#/apropos" data-link>À propos</a>
-    <div class="cta"><a href="#/contact" class="btn" data-glow data-link>Réserver un appel</a></div>
-  </nav>
-</header>
-
+  </header>
 
   <main>
     <!-- Accueil -->
@@ -429,52 +357,44 @@ body.lock{overflow:hidden;height:100svh}
   </footer>
 
   <script>
-
-/* ====== Splash Intro avec particules « feu » (fix iOS + z-index) ====== */
+<script>
+/* ====== Splash Intro avec particules « feu » ====== */
 (function(){
   const intro = document.getElementById('intro');
   const canvas = document.getElementById('introFx');
   if(!intro || !canvas) return;
-
-  // Empêche le scroll pendant le splash
-  document.body.classList.add('lock');
-
   const ctx = canvas.getContext('2d');
   let W,H, sparks=[];
-  const MAX=120;
-  // Durée : un peu plus courte sur mobile
-  const LIFE = (window.innerWidth <= 640) ? 1800 : 2200;
-  const F_OUT=300;
+  const MAX=120;                  // nb de particules
+  const LIFE=2200;                // durée d’affichage (ms)
+  const F_OUT=300;                // marge avant fade (ms)
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function resize(){
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
+  function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; }
   addEventListener('resize', resize, {passive:true}); resize();
 
-  // Émetteur pile sous le centre du logo (donc visible "par-dessus" le logo)
   function spawn(){
-    const cx = W * 0.5;
-    const cy = H * 0.47; // ajustable 0.45–0.50 selon rendu
-    for(let i=0;i<5;i++){
+    // émetteur sous le logo (centre de l’écran)
+    const cx = W*0.5, cy = H*0.55;
+    for(let i=0;i<4;i++){
       sparks.push({
-        x: cx + (Math.random()*50 - 25),
-        y: cy + (Math.random()*25 + 10),
-        vx: (Math.random()-.5)*0.25,
-        vy: -(Math.random()*1.4 + 0.4),
-        r:  Math.random()*2.4 + 0.8,
-        a:  Math.random()*Math.PI*2,
-        life: Math.random()*1000 + 800
+        x: cx + (Math.random()*60-30),
+        y: cy + (Math.random()*20+10),
+        vx: (Math.random()-.5)*0.35,
+        vy: -(Math.random()*1.6+0.6),
+        r: Math.random()*1.8 + 0.6,
+        a: Math.random()*Math.PI*2,
+        life: Math.random()*800 + 600
       });
     }
     if(sparks.length>MAX) sparks = sparks.slice(-MAX);
   }
 
-  function tick(){
+  function tick(t){
     ctx.clearRect(0,0,W,H);
-    // halo
-    const g = ctx.createRadialGradient(W/2, H*0.45, 0, W/2, H*0.45, Math.max(W,H)*0.45);
-    g.addColorStop(0,'rgba(255,200,150,.12)');
+    // halo discret
+    const g = ctx.createRadialGradient(W/2,H*0.52,0,W/2,H*0.52, Math.max(W,H)*0.35);
+    g.addColorStop(0,'rgba(255,200,150,.10)');
     g.addColorStop(1,'rgba(255,200,150,0)');
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
 
@@ -482,7 +402,7 @@ body.lock{overflow:hidden;height:100svh}
     for(let i=sparks.length-1;i>=0;i--){
       const p = sparks[i];
       p.x += p.vx + Math.cos(p.a)*0.05;
-      p.y += p.vy; p.vy -= 0.002;
+      p.y += p.vy; p.vy -= 0.002; // monte doucement (antigravité légère)
       p.a += (Math.random()-.5)*0.12;
       p.life -= 16;
 
@@ -493,28 +413,27 @@ body.lock{overflow:hidden;height:100svh}
       ctx.fillStyle = grd;
       ctx.beginPath(); ctx.arc(p.x,p.y,p.r*16,0,Math.PI*2); ctx.fill();
 
-      if(p.life<=0 || p.y<-50) sparks.splice(i,1);
+      if(p.life<=0 || p.y< -50) sparks.splice(i,1);
     }
-    spawn();
-    requestAnimationFrame(tick);
+    if(!reduced) spawn();
+    req = requestAnimationFrame(tick);
   }
-  tick();
+  let req = requestAnimationFrame(tick);
 
-  // Fin du splash → fade + unlock scroll + suppression du nœud
-  const endAt = performance.now() + LIFE;
+  // Fin de l’intro → fade + suppression du nœud
+  const endAt = performance.now() + (reduced ? 300 : LIFE);
   function check(){
     if(performance.now() >= endAt - F_OUT){
       intro.classList.add('hide');
       setTimeout(()=>{
-        document.body.classList.remove('lock');
+        cancelAnimationFrame(req);
         intro.remove();
-      }, 800); // même durée que la transition CSS
-    } else {
-      requestAnimationFrame(check);
-    }
+      }, 800); // temps = transition CSS
+    } else { requestAnimationFrame(check); }
   }
   requestAnimationFrame(check);
 })();
+</script>
 
   /* Router SPA */
     const pages = {
@@ -540,33 +459,6 @@ body.lock{overflow:hidden;height:100svh}
       window.scrollTo({top:0,behavior:'instant'});
     }
     window.addEventListener('hashchange', route); route();
-
-    /* ===== Menu mobile ===== */
-const burger = document.getElementById('burger');
-const mobileNav = document.getElementById('mobileNav');
-
-function closeMobile(){
-  mobileNav.classList.remove('open');
-  burger?.setAttribute('aria-expanded','false');
-}
-function openMobile(){
-  mobileNav.classList.add('open');
-  burger?.setAttribute('aria-expanded','true');
-}
-burger?.addEventListener('click', ()=>{
-  const open = mobileNav.classList.contains('open');
-  open ? closeMobile() : openMobile();
-});
-/* fermer après navigation */
-mobileNav.querySelectorAll('a[data-link]').forEach(a=>{
-  a.addEventListener('click', closeMobile);
-});
-/* fermer si on passe en desktop */
-window.addEventListener('resize', ()=>{
-  if (window.innerWidth > 640) closeMobile();
-});
-/* fermer aussi quand la route change (sécurité) */
-window.addEventListener('hashchange', closeMobile);
 
     /* Année */
     document.getElementById('y').textContent=new Date().getFullYear();
@@ -604,5 +496,3 @@ window.addEventListener('hashchange', closeMobile);
   </script>
 </body>
 </html>
-
-
